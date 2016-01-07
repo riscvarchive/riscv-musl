@@ -3,11 +3,12 @@ static inline void *a_cas_p(volatile void *p, void *t, void *s)
         void *old;
         int tmp;
         __asm__(
-                "li %1, 1\n\t"
-                "1: lr.d %0, %4\n\t"
+                "li %1, 1\n"
+                "1:\n\t"
+                "lr.d %0, %4\n\t"
                 "bne %0, %2, 1f\n\t"
                 "sc.d %1, %3, %4\n\t"
-                "bnez %1, 1b\n\t"
+                "bnez %1, 1b\n"
                 "1:"
                 : "r"(old), "r"(tmp)
                 : "r"(t), "r"(s), "+A"(*((long *)p)));
@@ -18,11 +19,12 @@ static inline int a_cas(volatile int *p, int t, int s)
 {
         int old, tmp;
         __asm__(
-                "li %1, 1\n\t"
-                "1: lr.w %0, %4\n\t"
+                "li %1, 1\n"
+                "1:\n\t"
+                "lr.w %0, %4\n\t"
                 "bne %0, %2, 1f\n\t"
                 "sc.w %1, %3, %4\n\t"
-                "bnez %1, 1b\n\t"
+                "bnez %1, 1b\n"
                 "1:"
                 : "r"(old), "r"(tmp)
                 : "r"(t), "r"(s), "+A"(*(p)));
@@ -103,6 +105,6 @@ static inline void a_or(volatile int *p, int v)
 static inline void a_store(volatile int *p, int x)
 {
         __asm__(
-                "amoswap.w.aq.rl %x0, %0, %1"
+                "amoswap.w.aq.rl %zero, %0, %1"
                 :"r"(x), "+A"(*(p)));
 }
