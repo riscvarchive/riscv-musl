@@ -1,7 +1,6 @@
-static inline void *a_cas_p(volatile void *p, void *t, void *s)
+static inline int a_cas(volatile int *p, int t, int s)
 {
-        void *old;
-        int tmp;
+        int old, tmp;
         __asm__(
                 "li %1, 1\n\t"
                 "1: lr.w %0, %4\n\t"
@@ -14,9 +13,9 @@ static inline void *a_cas_p(volatile void *p, void *t, void *s)
         return old;
 }
 
-static inline int a_cas(volatile int *p, int t, int s)
+static inline void *a_cas_p(volatile void *p, void *t, void *s)
 {
-        return (int) a_cas_p((volatile void *) p, (void *) t, (void *) s);
+        return (void *) a_cas(p, (int) t, (int) s);
 }
 
 static inline int a_swap(volatile int *x, int v)
@@ -88,7 +87,7 @@ static inline void a_or_64(volatile uint64_t *p, uint64_t v)
                 :"r"(y), "+A"(*(x)));
 }
 
-static inline void a_or_l(volatile void *p, long v)
+static inline void a_or(volatile int *p, int v)
 {
         int tmp;
         __asm__(
@@ -97,9 +96,9 @@ static inline void a_or_l(volatile void *p, long v)
                 :"r"(v), "+A"(*(p)));
 }
 
-static inline void a_or(volatile int *p, int v)
+static inline void a_or_l(volatile void *p, long v)
 {
-        a_or_l((volatile void*) p, (long) v);
+        a_or(p, (int) v);
 }
 
 static inline void a_store(volatile int *p, int x)

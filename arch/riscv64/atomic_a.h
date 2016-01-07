@@ -10,7 +10,7 @@ static inline void *a_cas_p(volatile void *p, void *t, void *s)
                 "bnez %1, 1b\n\t"
                 "1:"
                 : "r"(old), "r"(tmp)
-                : "r"(t), "r"(s), "+A"(*(p)));
+                : "r"(t), "r"(s), "+A"(*((long *)p)));
         return old;
 }
 
@@ -88,7 +88,7 @@ static inline void a_or_64(volatile uint64_t *p, uint64_t v)
 
 static inline void a_or_l(volatile void *p, long v)
 {
-        a_or_64((volatile uint64_t*) p, (uint64_t) v);
+        a_or_64(p, (uint64_t) v);
 }
 
 static inline void a_or(volatile int *p, int v)
