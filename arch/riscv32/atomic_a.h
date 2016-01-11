@@ -21,7 +21,7 @@ static inline void *a_cas_p(volatile void *p, void *t, void *s)
 static inline int a_swap(volatile int *x, int v)
 {
         int old;
-        __asm__("amoswap.w.aq.rl %0, %2, %1"
+        __asm__("amoswap.w %0, %2, %1"
                 : "=rJ"(old), "+A"(*(x))
                 : "r"(v));
         return old;
@@ -30,7 +30,7 @@ static inline int a_swap(volatile int *x, int v)
 static inline int a_fetch_add(volatile int *x, int v)
 {
         int tmp;
-        __asm__("amoadd.w.aq.rl %0, %2, %1"
+        __asm__("amoadd.w %0, %2, %1"
                 :"=rJ"(tmp), "+A"(*(x))
                 :"r"(v));
         return tmp;
@@ -51,12 +51,12 @@ static inline void a_and_64(volatile uint64_t *p, uint64_t v)
         volatile uint32_t *x = (volatile uint32_t*) p;
         uint32_t y = (uint32_t) v;
         int tmp;
-        __asm__("amoand.w.aq %0, %2, %1"
+        __asm__("amoand.w %0, %2, %1"
                 :"=rJ"(tmp), "+A"(*(x))
                 :"r"(y));
         y = (uint32_t) (v >> 32);
         x += 1;
-        __asm__("amoand.w.rl %0, %2, %1"
+        __asm__("amoand.w %0, %2, %1"
                 :"=rJ"(tmp), "+A"(*(x))
                 :"r"(y));
 }
@@ -64,7 +64,7 @@ static inline void a_and_64(volatile uint64_t *p, uint64_t v)
 static inline void a_and(volatile int *p, int v)
 {
         int tmp;
-        __asm__("amoand.w.aq.rl %0, %2, %1"
+        __asm__("amoand.w %0, %2, %1"
                 :"=rJ"(tmp), "+A"(*(p))
                 :"r"(v));
 }
@@ -74,12 +74,12 @@ static inline void a_or_64(volatile uint64_t *p, uint64_t v)
         volatile uint32_t *x = (volatile uint32_t*) p;
         uint32_t y = (uint32_t) v;
         int tmp;
-        __asm__("amoor.w.aq %0, %2, %1"
+        __asm__("amoor.w %0, %2, %1"
                 :"=rJ"(tmp), "+A"(*(x))
                 :"r"(y));
         y = (uint32_t) (v >> 32);
         x += 1;
-        __asm__("amoor.w.rl %0, %2, %1"
+        __asm__("amoor.w %0, %2, %1"
                 :"=rJ"(tmp), "+A"(*(x))
                 :"r"(y));
 }
@@ -87,7 +87,7 @@ static inline void a_or_64(volatile uint64_t *p, uint64_t v)
 static inline void a_or(volatile int *p, int v)
 {
         int tmp;
-        __asm__("amoor.w.aq.rl %0, %2, %1"
+        __asm__("amoor.w %0, %2, %1"
                 :"=rJ"(tmp), "+A"(*(p))
                 :"r"(v));
 }
@@ -99,7 +99,7 @@ static inline void a_or_l(volatile void *p, long v)
 
 static inline void a_store(volatile int *p, int x)
 {
-        __asm__("amoswap.w.aq.rl %zero, %1, %0"
+        __asm__("amoswap.w zero, %1, %0"
                 :"+A"(*(p))
                 :"r"(x));
 }
