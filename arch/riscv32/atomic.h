@@ -6,7 +6,7 @@
 #ifdef __riscv_atomic
 #include "atomic_a.h"
 #else
-#include "atomic_base.h"
+#error "Atomics unimplemented without A extension."
 #endif
 
 static inline int a_ctz_l(unsigned long x)
@@ -30,7 +30,7 @@ static inline int a_ctz_64(uint64_t x)
 
 static inline void a_barrier()
 {
-        __asm__("fence rw, rw");
+        __asm__("fence");
 }
 
 #define a_spin a_barrier
