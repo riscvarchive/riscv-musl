@@ -22,7 +22,7 @@ typedef struct {
 } mcontext_t;
 #endif
 
-typedef struct sigaltstack {
+struct sigaltstack {
         void *ss_sp;
         size_t ss_size;
         int ss_flags;
@@ -44,7 +44,7 @@ typedef struct __ucontext
 #define SA_RESTART   0x10000000
 #define SA_NODEFER   0x40000000
 #define SA_RESETHAND 0x80000000
-#define SA_RESETHAND 0x04000000
+#define SA_RESTORER  0x04000000
 
 #endif
 
