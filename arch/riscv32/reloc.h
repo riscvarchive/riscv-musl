@@ -23,4 +23,4 @@
 #define REL_TPOFF       R_RISCV_TLS_TPREL32
 
 #define CRTJMP(pc,sp) __asm__ __volatile__( \
-                "addi sp, %1, 0 ; jr %0" : : "r"(pc), "r"(sp) : "memory" )
+                "mv sp, %1 ; jr %0" : : "r"(pc), "r"(sp) : "memory" )

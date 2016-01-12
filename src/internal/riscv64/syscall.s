@@ -2,14 +2,14 @@
 .hidden __syscall
 .type   __syscall,%function
 __syscall:
-        addi t0, a0, 0
-        addi a0, a1, 0
-        addi a1, a2, 0
-        addi a2, a3, 0
-        addi a3, a4, 0
-        addi a4, a5, 0
-        addi a5, a6, 0
-        addi a6, a7, 0
-        addi a7, t0, 0
+        mv t0, a0
+        mv a0, a1
+        mv a1, a2
+        mv a2, a3
+        mv a3, a4
+        mv a4, a5
+        mv a5, a6
+        mv a6, a7
+        mv a7, t0
         scall
-        jr ra
+        ret
