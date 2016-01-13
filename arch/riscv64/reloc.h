@@ -12,7 +12,7 @@
 #define FP_SUFFIX ""
 #endif
 
-#define LDSO_ARCH "riscv" ENDIAN_SUFFIX "64" FP_SUFFIX
+#define LDSO_ARCH "riscv64" ENDIAN_SUFFIX FP_SUFFIX
 
 #define REL_SYMBOLIC    R_RISCV_64
 #define REL_PLT         R_RISCV_JUMP_SLOT
