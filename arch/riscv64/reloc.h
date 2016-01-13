@@ -19,7 +19,7 @@
 #define REL_RELATIVE    R_RISCV_RELATIVE
 #define REL_COPY        R_RISCV_COPY
 #define REL_DTPMOD      R_RISCV_TLS_DTPMOD64
-#define REL_DTPOFF      R_RISCV_TLS_DTPOFF64
+#define REL_DTPOFF      R_RISCV_TLS_DTPREL64
 #define REL_TPOFF       R_RISCV_TLS_TPREL64
 
 #define CRTJMP(pc,sp) __asm__ __volatile__( \
