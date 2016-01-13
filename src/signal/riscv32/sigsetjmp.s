@@ -4,7 +4,7 @@
 .type __sigsetjmp, %function
 sigsetjmp:
 __sigsetjmp:
-        bez a1, setjmp
+        beqz a1, setjmp
 
         sw ra, 164(a0)
         sw s0, 168(a0)
