@@ -1,1 +1,1 @@
-typedef unsigned long __jmp_buf[27];
+typedef unsigned long __jmp_buf[29];
