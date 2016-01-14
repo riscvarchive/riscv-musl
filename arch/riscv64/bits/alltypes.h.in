@@ -1,5 +1,5 @@
 #define _Addr long
-#define _Int64 long long
+#define _Int64 long
 #define _Reg long
 
 TYPEDEF __builtin_va_list va_list;
