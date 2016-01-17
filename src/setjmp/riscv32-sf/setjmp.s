@@ -19,8 +19,8 @@ setjmp:
         sw s9,    36(a0)
         sw s10,   40(a0)
         sw s11,   44(a0)
-        sw tp,    48(a0)
-        sw sp,    52(a0)
-        sw ra,    56(a0)
+        sw sp,    48(a0)
+        sw ra,    52(a0)
+
         li a0, 0
         ret
