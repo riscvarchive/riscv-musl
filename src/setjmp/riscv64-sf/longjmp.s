@@ -19,11 +19,10 @@ longjmp:
         ld s9,    72(a0)
         ld s10,   80(a0)
         ld s11,   88(a0)
-        ld tp,    96(a0)
-        ld sp,    104(a0)
-        ld ra,    112(a0)
+        ld sp,    96(a0)
+        ld ra,    104(a0)
 
         mv a0, a1
         bnez a1, 1f
         li a0, 1
-1:      jr ra
+1:      ret

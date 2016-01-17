@@ -19,8 +19,8 @@ setjmp:
         sd s9,    72(a0)
         sd s10,   80(a0)
         sd s11,   88(a0)
-        sd tp,    96(a0)
-        sd sp,    104(a0)
-        sd ra,    112(a0)
+        sd sp,    96(a0)
+        sd ra,    104(a0)
+
         li a0, 0
         ret

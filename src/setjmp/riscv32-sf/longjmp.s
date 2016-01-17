@@ -19,11 +19,10 @@ longjmp:
         lw s9,    36(a0)
         lw s10,   40(a0)
         lw s11,   44(a0)
-        lw tp,    48(a0)
-        lw sp,    52(a0)
-        lw ra,    56(a0)
+        lw sp,    48(a0)
+        lw ra,    52(a0)
 
         mv a0, a1
         bnez a1, 1f
         li a0, 1
-1:      jr ra
+1:      ret
