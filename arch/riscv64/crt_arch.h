@@ -10,6 +10,6 @@ START ":\n"
 ".weak _DYNAMIC\n"
 ".hidden _DYNAMIC\n\t"
 "lla a1, _DYNAMIC\n\t"
-"addi sp, sp, -16\n\t"
+"andi sp, sp, -16\n\t"
 "jal " START "_c"
 );
