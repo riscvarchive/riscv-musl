@@ -1,3 +1,4 @@
+#define a_cas a_cas
 static inline int a_cas(volatile int *p, int t, int s)
 {
         int old, tmp;
@@ -13,93 +14,42 @@ static inline int a_cas(volatile int *p, int t, int s)
         return old;
 }
 
-static inline void *a_cas_p(volatile void *p, void *t, void *s)
-{
-        return (void *) a_cas(p, (int) t, (int) s);
-}
-
-static inline int a_swap(volatile int *x, int v)
+#define a_swap a_swap
+static inline int a_swap(volatile int *p, int v)
 {
         int old;
         __asm__("amoswap.w %0, %2, %1"
-                : "=rJ"(old), "+A"(*(x))
+                : "=rJ"(old), "+A"(*(p))
                 : "r"(v));
         return old;
 }
 
-static inline int a_fetch_add(volatile int *x, int v)
+#define a_fetch_add a_fetch_add
+static inline int a_fetch_add(volatile int *p, int v)
 {
         int tmp;
         __asm__("amoadd.w %0, %2, %1"
-                :"=rJ"(tmp), "+A"(*(x))
+                :"=rJ"(tmp), "+A"(*(p))
                 :"r"(v));
         return tmp;
 }
 
-static inline void a_inc(volatile int *x)
+#define a_fetch_and a_fetch_and
+static inline int a_fetch_and(volatile int *p, int v)
 {
-        a_fetch_add(x, 1);
-}
-
-static inline void a_dec(volatile int *x)
-{
-        a_fetch_add(x, -1);
-}
-
-static inline void a_and_64(volatile uint64_t *p, uint64_t v)
-{
-        volatile uint32_t *x = (volatile uint32_t*) p;
-        uint32_t y = (uint32_t) v;
-        int tmp;
+        int old;
         __asm__("amoand.w %0, %2, %1"
-                :"=rJ"(tmp), "+A"(*(x))
-                :"r"(y));
-        y = (uint32_t) (v >> 32);
-        x += 1;
-        __asm__("amoand.w %0, %2, %1"
-                :"=rJ"(tmp), "+A"(*(x))
-                :"r"(y));
+                : "=rJ"(old), "+A"(*(p))
+                : "r"(v));
+        return old;
 }
 
-static inline void a_and(volatile int *p, int v)
+#define a_fetch_and a_fetch_or
+static inline int a_fetch_or(volatile int *p, int v)
 {
-        int tmp;
-        __asm__("amoand.w %0, %2, %1"
-                :"=rJ"(tmp), "+A"(*(p))
-                :"r"(v));
-}
-
-static inline void a_or_64(volatile uint64_t *p, uint64_t v)
-{
-        volatile uint32_t *x = (volatile uint32_t*) p;
-        uint32_t y = (uint32_t) v;
-        int tmp;
+        int old;
         __asm__("amoor.w %0, %2, %1"
-                :"=rJ"(tmp), "+A"(*(x))
-                :"r"(y));
-        y = (uint32_t) (v >> 32);
-        x += 1;
-        __asm__("amoor.w %0, %2, %1"
-                :"=rJ"(tmp), "+A"(*(x))
-                :"r"(y));
-}
-
-static inline void a_or(volatile int *p, int v)
-{
-        int tmp;
-        __asm__("amoor.w %0, %2, %1"
-                :"=rJ"(tmp), "+A"(*(p))
-                :"r"(v));
-}
-
-static inline void a_or_l(volatile void *p, long v)
-{
-        a_or(p, (int) v);
-}
-
-static inline void a_store(volatile int *p, int x)
-{
-        __asm__("amoswap.w zero, %1, %0"
-                :"+A"(*(p))
-                :"r"(x));
+                : "=rJ"(old), "+A"(*(p))
+                : "r"(v));
+        return old;
 }
