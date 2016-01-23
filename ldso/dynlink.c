@@ -373,6 +373,7 @@ static void do_relocs(struct dso *dso, size_t *rel, size_t rel_size, size_t stri
 		case REL_SYMBOLIC:
 		case REL_GOT:
 		case REL_PLT:
+                        __asm__("ebreak");
 			*reloc_addr = sym_val + addend;
 			break;
 		case REL_RELATIVE:

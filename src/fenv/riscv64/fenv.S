@@ -1,3 +1,5 @@
+#ifndef __riscv_soft_float
+
 .global feclearexcept
 .type feclearexcept, %function
 feclearexcept:
@@ -47,3 +49,5 @@ fesetenv:
         fscsr t0, t1
         li a0, 0
         ret
+
+#endif
