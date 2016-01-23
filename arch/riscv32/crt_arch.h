@@ -9,7 +9,7 @@ START ":\n"
 "mv a0, sp\n"
 ".weak _DYNAMIC\n"
 ".hidden _DYNAMIC\n\t"
-"lw a1, _DYNAMIC\n\t"
+"lla a1, _DYNAMIC\n\t"
 "addi sp, sp, -16\n\t"
 "jal " START "_c"
 );
