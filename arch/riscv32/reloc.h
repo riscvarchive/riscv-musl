@@ -14,6 +14,8 @@
 
 #define LDSO_ARCH "riscv" ENDIAN_SUFFIX FP_SUFFIX
 
+#define NO_LEGACY_INITFINI
+
 #define REL_SYMBOLIC    R_RISCV_32
 #define REL_PLT         R_RISCV_JUMP_SLOT
 #define REL_RELATIVE    R_RISCV_RELATIVE
@@ -24,8 +26,3 @@
 
 #define CRTJMP(pc,sp) __asm__ __volatile__( \
                 "mv sp, %1 ; jr %0" : : "r"(pc), "r"(sp) : "memory" )
-
-#define GETFUNCSYM(fp, sym, got) __asm__ ( \
-                ".hidden " #sym "\n\t" \
-                "lla %0, " #sym "" \
-                : "=r"(*fp) : : "memory" )
