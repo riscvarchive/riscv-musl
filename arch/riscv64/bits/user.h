@@ -1,16 +1,16 @@
 struct user_regs_struct {
-	unsigned long pc;
-	unsigned long ra;
-	unsigned long s[12];
-	unsigned long sp;
 	unsigned long tp;
-	unsigned long v[2];
-	unsigned long a[8];
-	unsigned long t[5];
-	unsigned long gp;
-	unsigned long status;
+	unsigned long t0, t1, t2;
+	unsigned long s0, s1;
+	unsigned long a0, a1, a2, a3, a4, a5, a6, a7;
+	unsigned long s2, s3, s4, s5, s6, s7, s8, s9, s10, s11;
+	unsigned long t3, t4, t5, t6;
 };
+
+struct user_fpregs_struct {
+        uint64_t f[32];
+        uint32_t fcsr;
+};
+
 #define ELF_NGREG 32
-#define ELF_NFPREG 32
 typedef unsigned long elf_greg_t, elf_gregset_t[ELF_NGREG];
-typedef double elf_fpreg_t, elf_fpregset_t[ELF_NFPREG];

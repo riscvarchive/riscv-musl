@@ -7,18 +7,18 @@
 #endif
 
 #if defined(_GNU_SOURCE) || defined(_BSD_SOURCE)
-typedef unsigned long greg_t, gregset_t[32];
+#include <bits/user.h>
 typedef struct {
-        double fpregs[32];
-        unsigned long fsr;
+        uint64_t sc_fpregs[32];
+        uint32_t fcsr;
 } fpregset_t;
 typedef struct sigcontext {
-        gregset_t gregs;
-        fpregset_t fpregs;
+        user_regs_struct sc_regs;
+        user_fpregs_struct sc_fpregs;
 } mcontext_t;
 #else
 typedef struct {
-        unsigned long __regs[32 + 2*32 + 1];
+        unsigned long __regs[28 + 2*32 + 1];
 } mcontext_t;
 #endif
 
