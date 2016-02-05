@@ -1,10 +1,11 @@
 static inline struct pthread *__pthread_self()
 {
-        struct pthread *self;
-        __asm__ __volatile__("mv %0, tp" : "=r"(self));
-        return self;
+        char *tp;
+        __asm__ __volatile__("mv %0, tp" : "=r"(tp));
+        return (void *)(tp - sizeof(struct pthread) + 8);
 }
 
-#define TP_ADJ(p) (p)
+#define TLS_ABOVE_TP
+#define TP_ADJ(p) ((char *)p + sizeof(struct pthread) - 8)
 
-#define MC_PC gregs[0]
+#define MC_PC sc_regs.pc
