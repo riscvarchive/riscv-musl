@@ -9,7 +9,7 @@ static inline int a_cas(volatile int *p, int t, int s)
                 "sc.w %1, %4, %2\n\t"
                 "bnez %1, 1b\n"
                 "1:"
-                : "=rJ"(old), "=rJ"(tmp), "+A"(*(p))
+                : "=rJ"(old), "=rJ"(tmp), "+A"(*p)
                 : "r"(t), "r"(s));
         return old;
 }
@@ -19,7 +19,7 @@ static inline int a_swap(volatile int *p, int v)
 {
         int old;
         __asm__("amoswap.w %0, %2, %1"
-                : "=rJ"(old), "+A"(*(p))
+                : "=rJ"(old), "+A"(*p)
                 : "r"(v));
         return old;
 }
@@ -29,7 +29,7 @@ static inline int a_fetch_add(volatile int *p, int v)
 {
         int tmp;
         __asm__("amoadd.w %0, %2, %1"
-                :"=rJ"(tmp), "+A"(*(p))
+                :"=rJ"(tmp), "+A"(*p)
                 :"r"(v));
         return tmp;
 }
@@ -39,7 +39,7 @@ static inline int a_fetch_and(volatile int *p, int v)
 {
         int tmp;
         __asm__("amoand.w %0, %2, %1"
-                :"=rJ"(tmp), "+A"(*(p))
+                :"=rJ"(tmp), "+A"(*p)
                 :"r"(v));
         return tmp;
 }
@@ -49,7 +49,7 @@ static inline int a_fetch_or(volatile int *p, int v)
 {
         int tmp;
         __asm__("amoor.w %0, %2, %1"
-                :"=rJ"(tmp), "+A"(*(p))
+                :"=rJ"(tmp), "+A"(*p)
                 :"r"(v));
         return tmp;
 }
@@ -59,7 +59,7 @@ static inline void a_and_64(volatile uint64_t *p, uint64_t v)
 {
         int tmp;
         __asm__("amoand.d %0, %2, %1"
-                :"=rJ"(tmp), "+A"(*(p))
+                :"=rJ"(tmp), "+A"(*p)
                 :"r"(v));
 }
 
@@ -68,7 +68,7 @@ static inline void a_or_64(volatile uint64_t *p, uint64_t v)
 {
         int tmp;
         __asm__("amoor.d %0, %2, %1"
-                :"=rJ"(tmp), "+A"(*(p))
+                :"=rJ"(tmp), "+A"(*p)
                 :"r"(v));
 }
 
@@ -84,7 +84,7 @@ static inline void *a_cas_p(volatile void *p, void *t, void *s)
                 "sc.d %1, %4, %2\n\t"
                 "bnez %1, 1b\n"
                 "1:"
-                : "=rJ"(old), "=rJ"(tmp), "+A"(*((long *)p))
+                : "=rJ"(old), "=rJ"(tmp), "+A"(*(long *) p)
                 : "r"(t), "r"(s));
         return old;
 }
