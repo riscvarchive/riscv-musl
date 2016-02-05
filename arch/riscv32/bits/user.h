@@ -8,8 +8,8 @@ struct user_regs_struct {
 };
 
 struct user_fpregs_struct {
-        uint64_t f[32];
-        uint32_t fcsr;
+        double f[32];
+        unsigned long fcsr;
 };
 
 #define ELF_NGREG 32
