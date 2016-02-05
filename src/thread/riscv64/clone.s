@@ -10,7 +10,7 @@ __clone:
         # Save func and arg to stack
         addi a1, a1, -16
         sd a0, 0(a1)
-        sd a2, 8(a1)
+        sd a3, 8(a1)
 
         # Call SYS_clone
         mv a0, a2
