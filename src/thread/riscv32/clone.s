@@ -11,7 +11,7 @@ __clone:
         # sp is 16 byte aligned.
         addi a1, a1, -16
         sw a0, 0(a1)
-        sw a2, 4(a1)
+        sw a3, 4(a1)
 
         # Call SYS_clone
         mv a0, a2
