@@ -9,7 +9,7 @@ static inline int a_cas(volatile int *p, int t, int s)
                 "sc.w %1, %4, %2\n\t"
                 "bnez %1, 1b\n"
                 "1:"
-                : "=rJ"(old), "=rJ"(tmp), "+A"(*p)
+                : "=rJ"(old), "+r"(tmp), "+A"(*p)
                 : "r"(t), "r"(s));
         return old;
 }
