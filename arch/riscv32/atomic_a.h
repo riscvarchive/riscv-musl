@@ -44,7 +44,7 @@ static inline int a_fetch_and(volatile int *p, int v)
         return old;
 }
 
-#define a_fetch_and a_fetch_or
+#define a_fetch_or a_fetch_or
 static inline int a_fetch_or(volatile int *p, int v)
 {
         int old;
