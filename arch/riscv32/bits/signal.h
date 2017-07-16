@@ -6,7 +6,7 @@
 # define SIGSTKSZ 8192
 #endif
 
-#if defined(_GNU_SOURCE) || defined(_BSD_SOURCE)
+#if (defined(_GNU_SOURCE) || defined(_BSD_SOURCE)) && !defined(IN_GCC)
 typedef unsigned long greg_t, gregset_t[32];
 typedef struct user_fpregs_struct {
         double f[32];
@@ -28,8 +28,8 @@ typedef struct sigcontext {
         struct user_fpregs_struct sc_fpregs;
 } mcontext_t;
 #else
-typedef struct {
-        unsigned long __regs[32 + 2*32 + 1];
+typedef struct sigcontext {
+        unsigned long gregs[32 + 2*32 + 1];
 } mcontext_t;
 #endif
 
