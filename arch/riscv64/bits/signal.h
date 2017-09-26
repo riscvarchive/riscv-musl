@@ -35,8 +35,8 @@ typedef struct sigcontext {
 
 struct sigaltstack {
         void *ss_sp;
-        size_t ss_size;
         int ss_flags;
+        size_t ss_size;
 };
 
 typedef struct __ucontext
@@ -44,8 +44,8 @@ typedef struct __ucontext
         unsigned long uc_flags;
         struct __ucontext *uc_link;
         stack_t uc_stack;
-        mcontext_t uc_mcontext;
         sigset_t uc_sigmask;
+        mcontext_t uc_mcontext;
 } ucontext_t;
 
 #define SA_NOCLDSTOP 1
