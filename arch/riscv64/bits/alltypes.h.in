@@ -9,6 +9,9 @@ TYPEDEF __builtin_va_list __isoc_va_list;
 TYPEDEF int wchar_t;
 #endif
 
+TYPEDEF int blksize_t;
+TYPEDEF unsigned int nlink_t;
+
 TYPEDEF float float_t;
 TYPEDEF double double_t;
 
