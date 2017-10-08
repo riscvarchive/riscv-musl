@@ -1,18 +1,12 @@
-#include <endian.h>
-
-#if __BYTE_ORDER == __BIG_ENDIAN
-#define ENDIAN_SUFFIX "eb"
-#else
-#define ENDIAN_SUFFIX ""
-#endif
-
-#ifdef __riscv_soft_float
+#if defined __riscv_float_abi_soft
 #define FP_SUFFIX "-sf"
-#else
+#if defined __riscv_float_abi_single
+#define FP_SUFFIX "-sp"
+#elif defined __riscv_float_abi_double
 #define FP_SUFFIX ""
 #endif
 
-#define LDSO_ARCH "riscv" ENDIAN_SUFFIX FP_SUFFIX
+#define LDSO_ARCH "riscv" __riscv_xlen FP_SUFFIX
 
 #define NO_LEGACY_INITFINI
 
