@@ -3159,6 +3159,14 @@ enum
 #define R_RISCV_RVC_LUI         46
 #define R_RISCV_GPREL_I         47
 #define R_RISCV_GPREL_S         48
+#define R_RISCV_TPREL_I         49
+#define R_RISCV_TPREL_S         50
+#define R_RISCV_RELAX           51
+#define R_RISCV_SUB6            52
+#define R_RISCV_SET6            53
+#define R_RISCV_SET8            54
+#define R_RISCV_SET16           55
+#define R_RISCV_SET32           56
 
 #ifdef __cplusplus
 }
