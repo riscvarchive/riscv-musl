@@ -13,9 +13,8 @@ typedef unsigned long greg_t;
 typedef unsigned long gregset_t[32];
 
 typedef struct {
-        unsigned long long f[64] __attribute__((aligned(16)));
-        unsigned fcsr;
-        unsigned reserved[3];
+        unsigned long long fpregs[64];
+        unsigned int fcsr;
 } fpregset_t;
 
 typedef struct sigcontext {
@@ -25,8 +24,9 @@ typedef struct sigcontext {
 
 #else
 typedef struct {
-  unsigned long gregs[32];
-  unsigned long long fpregs[66] __attribute__((aligned(16)));
+        unsigned long gregs[32];
+        unsigned long long fpregs[32];
+        unsigned int fsr;
 } mcontext_t;
 #endif
 
