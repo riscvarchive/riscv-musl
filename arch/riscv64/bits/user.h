@@ -34,8 +34,8 @@ struct user_regs_struct {
 };
 
 struct user_fpregs_struct {
-        double f[32];
-        unsigned int fcsr;
+	double f[32];
+	unsigned int fcsr;
 };
 
 #define ELF_NGREG 32
