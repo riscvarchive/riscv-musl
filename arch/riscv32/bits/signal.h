@@ -12,10 +12,29 @@
 typedef unsigned long greg_t;
 typedef unsigned long gregset_t[32];
 
-typedef struct {
-	unsigned long long fpregs[32];
+struct __riscv_f_ext_state {
+	unsigned int f[32];
 	unsigned int fcsr;
-} fpregset_t;
+};
+
+struct __riscv_d_ext_state {
+	unsigned long long f[32];
+	unsigned int fcsr;
+};
+
+struct __riscv_q_ext_state {
+	unsigned long long f[64] __attribute__((aligned(16)));
+	unsigned int fcsr;
+	unsigned int reserved[3];
+};
+
+union __riscv_fp_state {
+	struct __riscv_f_ext_state f;
+	struct __riscv_d_ext_state d;
+	struct __riscv_q_ext_state q;
+};
+
+typedef union __riscv_fp_state fpregset_t;
 
 typedef struct sigcontext {
 	gregset_t gregs;
@@ -25,8 +44,7 @@ typedef struct sigcontext {
 #else
 typedef struct {
 	unsigned long gregs[32];
-	unsigned long long fpregs[32];
-	unsigned int fsr;
+	unsigned long long fpregs[66];
 } mcontext_t;
 #endif
 
@@ -42,6 +60,7 @@ typedef struct __ucontext
 	struct __ucontext *uc_link;
 	stack_t uc_stack;
 	sigset_t uc_sigmask;
+	char __unused[1024 / 8 - sizeof(sigset_t)];
 	mcontext_t uc_mcontext;
 } ucontext_t;
 
