@@ -3167,6 +3167,7 @@ enum
 #define R_RISCV_SET8            54
 #define R_RISCV_SET16           55
 #define R_RISCV_SET32           56
+#define R_RISCV_32_PCREL        57
 
 #ifdef __cplusplus
 }
