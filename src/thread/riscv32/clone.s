@@ -8,7 +8,6 @@
 .type  __clone, %function
 __clone:
         # Save func and arg to stack
-        # sp is 16 byte aligned.
         addi a1, a1, -16
         sw a0, 0(a1)
         sw a3, 4(a1)
