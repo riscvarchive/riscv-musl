@@ -25,9 +25,9 @@ __clone:
         ret
 
         # Child
-1:      lw t0, 0(sp)
+1:      lw a1, 0(sp)
         lw a0, 4(sp)
-        jalr t0
+        jalr a1
 
         # Exit
         li a7, 93 # SYS_exit
