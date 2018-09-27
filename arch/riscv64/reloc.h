@@ -13,7 +13,7 @@
 
 #define NO_LEGACY_INITFINI
 
-#define TPOFF_K 16
+#define TPOFF_K 0
 
 #define REL_SYMBOLIC    R_RISCV_64
 #define REL_PLT         R_RISCV_JUMP_SLOT
