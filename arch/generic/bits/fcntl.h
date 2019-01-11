@@ -24,17 +24,34 @@
 #define F_SETFD  2
 #define F_GETFL  3
 #define F_SETFL  4
+#include <bits/limits.h> /* For LONG_BIT */
+#if LONG_BIT == 32
+/* Musl defines off_t to always be
+ * int64, even for 32bit architectures,
+ * so it always uses the 64bit-based
+ * flock struct for related syscalls.
+ * In order for this to work on 32bit
+ * architectures we need to hard-wire
+ * F_GETLK/SETLK/SETLKW to the values
+ * of F_GETLK64/SETLK64/SETLKW64, as
+ * defined on the kernel's generic
+ * fcntl.h header.
+ *
+ * Note that the *64 macros are defined
+ * on fcntl.h (one level above).
+ */
+#define F_GETLK 12
+#define F_SETLK  13
+#define F_SETLKW 14
+#else
 #define F_GETLK  5
 #define F_SETLK  6
 #define F_SETLKW 7
+#endif
 #define F_SETOWN 8
 #define F_GETOWN 9
 #define F_SETSIG 10
 #define F_GETSIG 11
-
-#define F_GETLK64 12
-#define F_SETLK64 13
-#define F_SETLKW64 14
 
 #define F_SETOWN_EX 15
 #define F_GETOWN_EX 16
