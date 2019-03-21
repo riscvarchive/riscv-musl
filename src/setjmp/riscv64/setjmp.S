@@ -22,7 +22,7 @@ setjmp:
         sd sp,    96(a0)
         sd ra,    104(a0)
 
-#ifndef __riscv_soft_float
+#ifndef __riscv_float_abi_soft
         fsd fs0,  112(a0)
         fsd fs1,  120(a0)
         fsd fs2,  128(a0)
