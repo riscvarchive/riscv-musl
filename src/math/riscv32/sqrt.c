@@ -4,7 +4,7 @@
 
 double sqrt(double x)
 {
-	__asm__ ("sqrt.d %0, %1" : "=f"(x) : "f"(x));
+	__asm__ ("fsqrt.d %0, %1" : "=f"(x) : "f"(x));
 	return x;
 }
 
