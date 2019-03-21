@@ -11,5 +11,5 @@ __syscall:
         mv a5, a6
         mv a6, a7
         mv a7, t0
-        scall
+        ecall
         ret
