@@ -27,15 +27,14 @@ longjmp:
         fld fs1,  64(a0)
         fld fs2,  72(a0)
         fld fs3,  80(a0)
-        fld fs3,  88(a0)
-        fld fs4,  96(a0)
-        fld fs5,  104(a0)
-        fld fs6,  112(a0)
-        fld fs7,  120(a0)
-        fld fs8,  128(a0)
-        fld fs9,  136(a0)
-        fld fs10, 144(a0)
-        fld fs11, 152(a0)
+        fld fs4,  88(a0)
+        fld fs5,  96(a0)
+        fld fs6,  104(a0)
+        fld fs7,  112(a0)
+        fld fs8,  120(a0)
+        fld fs9,  128(a0)
+        fld fs10, 136(a0)
+        fld fs11, 144(a0)
 #endif
 
         mv a0, a1
