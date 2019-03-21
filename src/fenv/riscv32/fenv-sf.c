@@ -1,3 +1,3 @@
-#ifdef __riscv_soft_float
+#ifndef __riscv_flen
 #include "../fenv.c"
 #endif

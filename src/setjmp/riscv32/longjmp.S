@@ -22,7 +22,7 @@ longjmp:
         lw sp,    48(a0)
         lw ra,    52(a0)
 
-#ifndef __riscv_soft_float
+#ifndef __riscv_float_abi_soft
         fld fs0,  56(a0)
         fld fs1,  64(a0)
         fld fs2,  72(a0)
