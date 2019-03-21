@@ -23,7 +23,7 @@ __cp_begin:
         lw a6, 0(sp)
         mv a7, t0
         scall
-__cp_cancel:
-        ret
 __cp_end:
+        ret
+__cp_cancel:
         j __cancel
