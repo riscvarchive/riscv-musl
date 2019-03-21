@@ -3,4 +3,4 @@
 .type dlsym, %function
 dlsym:
         mv a2, ra
-        j __dlsym
+        tail __dlsym

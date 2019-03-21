@@ -4,13 +4,15 @@
 .type __sigsetjmp, %function
 sigsetjmp:
 __sigsetjmp:
-        beqz a1, setjmp
+        bnez a1, 1f
+        tail setjmp
+1:
 
         sw ra, 152(a0)
         sw s0, 160(a0)
         mv s0, a0
 
-        jal setjmp
+        call setjmp
 
         mv a1, a0
         mv a0, s0
@@ -18,4 +20,4 @@ __sigsetjmp:
         lw ra, 152(a0)
 
 .hidden __sigsetjmp_tail
-        j __sigsetjmp_tail
+        tail __sigsetjmp_tail
