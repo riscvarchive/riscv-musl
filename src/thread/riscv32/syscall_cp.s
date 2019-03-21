@@ -26,4 +26,4 @@ __cp_begin:
 __cp_end:
         ret
 __cp_cancel:
-        j __cancel
+        tail __cancel
