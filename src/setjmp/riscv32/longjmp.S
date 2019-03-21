@@ -37,7 +37,6 @@ longjmp:
         fld fs11, 144(a0)
 #endif
 
-        mv a0, a1
-        bnez a1, 1f
-        li a0, 1
-1:      ret
+        seqz a0, a1
+        add a0, a0, a1
+        ret
