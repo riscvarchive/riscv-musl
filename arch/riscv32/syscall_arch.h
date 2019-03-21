@@ -4,7 +4,7 @@
 #define __SYSCALL_LL_O(x) __SYSCALL_LL_E((x))
 
 #define __asm_syscall(...) \
-	__asm__ __volatile__ ("scall\n\t" \
+	__asm__ __volatile__ ("ecall\n\t" \
 	: "+r"(a0) : __VA_ARGS__ : "memory"); \
 	return a0; \
 

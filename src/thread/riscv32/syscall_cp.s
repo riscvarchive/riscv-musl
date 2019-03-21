@@ -22,7 +22,7 @@ __cp_begin:
         mv a5, a7
         lw a6, 0(sp)
         mv a7, t0
-        scall
+        ecall
 __cp_end:
         ret
 __cp_cancel:

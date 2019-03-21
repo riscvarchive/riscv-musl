@@ -5,4 +5,4 @@ __restore:
 .type __restore_rt, %function
 __restore_rt:
 	li a7, 139 # SYS_rt_sigreturn
-	scall
+	ecall
