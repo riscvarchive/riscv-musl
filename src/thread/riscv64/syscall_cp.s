@@ -10,7 +10,7 @@
 .type __syscall_cp_asm, %function
 __syscall_cp_asm:
 __cp_begin:
-        ld t0, 0(a0)
+        lw t0, 0(a0)
         bnez t0, __cp_cancel
 
         mv t0, a1
@@ -23,7 +23,7 @@ __cp_begin:
         ld a6, 0(sp)
         mv a7, t0
         scall
-__cp_cancel:
-        ret
 __cp_end:
+        ret
+__cp_cancel:
         j __cancel
