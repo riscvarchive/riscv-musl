@@ -23,7 +23,7 @@
 #define __NR_epoll_pwait 22
 #define __NR_dup 23
 #define __NR_dup3 24
-#define __NR_fcntl 25
+#define __NR_fcntl64 25
 #define __NR_inotify_init1 26
 #define __NR_inotify_add_watch 27
 #define __NR_inotify_rm_watch 28
@@ -40,10 +40,10 @@
 #define __NR_mount 40
 #define __NR_pivot_root 41
 #define __NR_nfsservctl 42
-#define __NR_statfs 43
-#define __NR_fstatfs 44
-#define __NR_truncate 45
-#define __NR_ftruncate 46
+#define __NR_statfs64 43
+#define __NR_fstatfs64 44
+#define __NR_truncate64 45
+#define __NR_ftruncate64 46
 #define __NR_fallocate 47
 #define __NR_faccessat 48
 #define __NR_chdir 49
@@ -59,7 +59,8 @@
 #define __NR_pipe2 59
 #define __NR_quotactl 60
 #define __NR_getdents64 61
-#define __NR_lseek 62
+#define __NR_llseek 62
+#define __NR__llseek __NR_llseek
 #define __NR_read 63
 #define __NR_write 64
 #define __NR_readv 65
@@ -76,8 +77,8 @@
 #define __NR_splice 76
 #define __NR_tee 77
 #define __NR_readlinkat 78
-#define __NR_fstatat 79
-#define __NR_fstat 80
+#define __NR_fstatat64 79
+#define __NR_fstat64 80
 #define __NR_sync 81
 #define __NR_fsync 82
 #define __NR_fdatasync 83
@@ -219,8 +220,8 @@
 #define __NR_keyctl 219
 #define __NR_clone 220
 #define __NR_execve 221
-#define __NR_mmap 222
-#define __NR_fadvise64 223
+#define __NR_mmap2 222
+#define __NR_fadvise64_64 223
 #define __NR_swapon 224
 #define __NR_swapoff 225
 #define __NR_mprotect 226
