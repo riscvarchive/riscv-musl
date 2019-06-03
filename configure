@@ -656,8 +656,8 @@ trycppif _SOFT_FLOAT "$t" && fail "$0: error: soft-float not supported on powerp
 fi
 
 if test "$ARCH" = "riscv64" ; then
-trycppif "RISCVEB || _RISCVEB || __RISCVEB || __RISCVEB__" "$t" && SUBARCH=${SUBARCH}eb
 trycppif __riscv_float_abi_soft "$t" && SUBARCH=${SUBARCH}-sf
+trycppif __riscv_float_abi_single "$t" && SUBARCH=${SUBARCH}-sp
 fi
 
 if test "$ARCH" = "sh" ; then

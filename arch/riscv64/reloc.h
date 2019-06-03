@@ -11,8 +11,6 @@
 
 #define LDSO_ARCH RISCV_LDSO(__riscv_xlen) RISCV_FP_SUFFIX
 
-#define NO_LEGACY_INITFINI
-
 #define TPOFF_K 0
 
 #define REL_SYMBOLIC    R_RISCV_64
